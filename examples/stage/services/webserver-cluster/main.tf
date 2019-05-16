@@ -1,7 +1,8 @@
+
 terraform {
   backend "s3" {
     bucket  = "tutorial.terraform.brad"
-    key     = "global/s3/terraform.tfstate"
+    key     = "stage/services/webserver-cluster/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
   }
@@ -11,22 +12,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = "tutorial.terraform.brad"
-
-  versioning {
-    enabled = true
-  }
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
-variable "server_port" {
-  description = "the port the server will use for http requests"
-  default     = 8080
-}
 
 data "aws_availability_zones" "all" {}
 
@@ -115,12 +100,4 @@ resource "aws_security_group" "elb" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-}
-
-output "elb_dns_name" {
-  value = "${aws_elb.example.dns_name}"
-}
-
-output "s3_bucket_arn" {
-  value = "${aws_s3_bucket.terraform_state.arn}"
 }
