@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 module "webserver-cluster" {
-  source = "../../../modules/services/webserver-cluster"
+  source = "git::https://github.com/bradAnderson58/terraform_modules.git//services/webserver-cluster?ref=v0.0.1"
 
   cluster_name = "webserver-prod"
   db_remote_state_bucket = "tutorial.terraform.brad"

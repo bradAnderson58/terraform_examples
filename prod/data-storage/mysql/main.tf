@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 module "mysql" {
-  source = "../../../modules/data-storage/mysql"
+  source = "git::https://github.com/bradAnderson58/terraform_modules.git//data-storage/mysql?ref=v0.0.1"
 
   db_password = "${var.db_password}"
   environment = "prod"
