@@ -19,9 +19,10 @@ module "webserver-cluster" {
   db_remote_state_bucket = "tutorial.terraform.brad"
   db_remote_state_key    = "stage/data-storage/mysql/terraform.tfstate"
 
-  instance_type = "t2.micro"
-  min_size      = 2
-  max_size      = 2
+  instance_type      = "t2.micro"
+  min_size           = 2
+  max_size           = 2
+  enable_autoscaling = false
 }
 
 resource "aws_security_group_rule" "allow_testing_inbound" {
