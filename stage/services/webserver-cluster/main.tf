@@ -13,7 +13,10 @@ provider "aws" {
 }
 
 module "webserver-cluster" {
-  source = "git::https://github.com/bradAnderson58/terraform_modules.git//services/webserver-cluster?ref=v0.0.1"
+  source = "git::https://github.com/bradAnderson58/terraform_modules.git//services/webserver-cluster?ref=v0.1.1"
+
+  ami         = "ami-0a313d6098716f372"
+  server_text = "Change Server Stuffs"
 
   cluster_name           = "webserver-stage"
   db_remote_state_bucket = "tutorial.terraform.brad"
